@@ -198,7 +198,7 @@ Full license: https://www.gnu.org/licenses/gpl-3.0.en.html
 - `fda_carpenter.csv`
 
 **Terms:**
-Please refer to the original data source for usage terms. See [`../source_info.pdf`](source_info.pdf) for the source link.
+Please refer to the original data source for usage terms. See [`source_info.pdf`](../source_info.pdf) for the source link.
 
 We have not included this dataset as the license is not provided. But one can access it from the source. 
 ---
