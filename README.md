@@ -25,7 +25,7 @@ CauSciBench is a benchmark dataset designed to evaluate the ability of AI tools 
 
 We draw examples from three sources:
 
-1. **Published real-world studies**: We turn to published papers on empirical causal inference from a wide range of disciplines including economics, political science, healthcare, criminology, etc. The causal inference method used in the paper and its corresponding answer is set as the reference method and causal effect. Information on the studies we have selected can be found in `data/real_data/source_info.pdf`.
+1. **Published real-world studies**: We turn to published papers on empirical causal inference from a wide range of disciplines including economics, political science, healthcare, criminology, etc. The causal inference method used in the paper and its corresponding answer is set as the reference method and causal effect. Information on the studies we have selected can be found in `data/source_info.pdf`.
 2. **Textbook examples**: These examples were picked from QRData (Liu et al., 2024).
 3. **Synthetic scenarios**: We generate synthetic data with known causal effects. To resemble causal analysis in practice, we generate hypothetical contexts and variables for the synthetic data using GPT.
 
