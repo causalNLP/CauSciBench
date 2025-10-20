@@ -1,0 +1,96 @@
+Jail,Relative_Treated,year,first.treated,In_Reuters_Data,Contract_Medical,Med_per_inmateday
+Richmond City Jail,-3,2008,2011,1,Mixed,5.31
+Richmond City Jail,-2,2009,2011,1,Mixed,4.11
+Riverside Regional Jail,-3,2009,2012,1,Mixed,4.37
+Piedmont Regional Jail,-3,2010,2013,1,Mixed,5.72
+Richmond City Jail,-1,2010,2011,1,Mixed,4.47
+Riverside Regional Jail,-2,2010,2012,1,Mixed,4.5
+Piedmont Regional Jail,-2,2011,2013,1,Mixed,2.87
+Richmond City Jail,0,2011,2011,1,Mixed,4.76
+Riverside Regional Jail,-1,2011,2012,1,Mixed,3.92
+Culpeper County Jail,-3,2011,2014,0,No,6.77
+Piedmont Regional Jail,-1,2012,2013,1,Mixed,2.48
+Richmond City Jail,1,2012,2011,1,Mixed,14.93
+Riverside Regional Jail,0,2012,2012,1,Mixed,4.88
+Culpeper County Jail,-2,2012,2014,0,No,5.71
+Piedmont Regional Jail,0,2013,2013,1,Mixed,4.23
+Richmond City Jail,2,2013,2011,1,Mixed,9.67
+Riverside Regional Jail,1,2013,2012,1,Mixed,10.29
+Northwestern Regional Jail,-3,2013,2016,0,No,3.64
+Culpeper County Jail,-1,2013,2014,0,No,2.7
+Piedmont Regional Jail,1,2014,2013,1,Mixed,9.38
+Richmond City Jail,3,2014,2011,1,Mixed,15.33
+Riverside Regional Jail,2,2014,2012,1,Yes,9.82
+Northwestern Regional Jail,-2,2014,2016,0,No,4.99
+Culpeper County Jail,0,2014,2014,0,Yes,4.18
+Piedmont Regional Jail,2,2015,2013,1,Yes,10.6
+Riverside Regional Jail,3,2015,2012,1,Yes,10.51
+Northwestern Regional Jail,-1,2015,2016,0,No,4.69
+Culpeper County Jail,1,2015,2014,0,Yes,8.03
+Pamunkey Regional Jail,-3,2015,2018,0,No,7.16
+Piedmont Regional Jail,3,2016,2013,1,Yes,9.55
+Northwestern Regional Jail,0,2016,2016,0,Yes,5.24
+Culpeper County Jail,2,2016,2014,0,Yes,6.38
+Pamunkey Regional Jail,-2,2016,2018,0,No,6.5
+Northwestern Regional Jail,1,2017,2016,0,Yes,6.54
+Culpeper County Jail,3,2017,2014,0,Yes,5.19
+Pamunkey Regional Jail,-1,2017,2018,0,No,10.69
+Northwestern Regional Jail,2,2018,2016,0,Yes,5.28
+Pamunkey Regional Jail,0,2018,2018,0,Yes,13.55
+Northwestern Regional Jail,3,2019,2016,0,Yes,7.46
+Pamunkey Regional Jail,1,2019,2018,0,Yes,14.79
+New River Valley Regional Jail,0,2008,0,1,Yes,3.59
+Fairfax County Adult Detention Center,0,2008,0,1,Mixed,3.61
+Patrick County Jail,0,2008,0,1,Yes,6.5
+Prince William - Manassas Regional Adult Detention Center,0,2008,0,1,Mixed,7.79
+Rappahannock Regional Jail,0,2008,0,1,Yes,3.14
+New River Valley Regional Jail,0,2009,0,1,Yes,2.26
+Fairfax County Adult Detention Center,0,2009,0,1,Mixed,3.43
+Patrick County Jail,0,2009,0,1,Yes,1.47
+Prince William - Manassas Regional Adult Detention Center,0,2009,0,1,Mixed,6.27
+Rappahannock Regional Jail,0,2009,0,1,Yes,1.17
+New River Valley Regional Jail,0,2010,0,1,No,1.86
+Fairfax County Adult Detention Center,0,2010,0,1,Mixed,2.85
+Patrick County Jail,0,2010,0,1,Yes,3.97
+Prince William - Manassas Regional Adult Detention Center,0,2010,0,1,Mixed,5.16
+Rappahannock Regional Jail,0,2010,0,1,Yes,2.48
+New River Valley Regional Jail,0,2011,0,1,No,2.92
+Fairfax County Adult Detention Center,0,2011,0,1,Mixed,2.86
+Patrick County Jail,0,2011,0,1,Yes,4.12
+Prince William - Manassas Regional Adult Detention Center,0,2011,0,1,Mixed,4.78
+Rappahannock Regional Jail,0,2011,0,1,Yes,2.56
+New River Valley Regional Jail,0,2012,0,1,No,2.69
+Fairfax County Adult Detention Center,0,2012,0,1,Mixed,3.08
+Patrick County Jail,0,2012,0,1,Yes,3.87
+Prince William - Manassas Regional Adult Detention Center,0,2012,0,1,Mixed,6.22
+Rappahannock Regional Jail,0,2012,0,1,Yes,2.76
+New River Valley Regional Jail,0,2013,0,1,No,1.57
+Fairfax County Adult Detention Center,0,2013,0,1,Mixed,3.1
+Patrick County Jail,0,2013,0,1,Yes,4.91
+Prince William - Manassas Regional Adult Detention Center,0,2013,0,1,Mixed,6.06
+Rappahannock Regional Jail,0,2013,0,1,Yes,2.44
+New River Valley Regional Jail,0,2014,0,1,No,3.17
+Fairfax County Adult Detention Center,0,2014,0,1,Mixed,3.46
+Patrick County Jail,0,2014,0,1,Yes,4.79
+Prince William - Manassas Regional Adult Detention Center,0,2014,0,1,Mixed,6.63
+Rappahannock Regional Jail,0,2014,0,1,Yes,2.78
+New River Valley Regional Jail,0,2015,0,1,No,2.29
+Fairfax County Adult Detention Center,0,2015,0,1,Mixed,2.5
+Patrick County Jail,0,2015,0,1,Yes,4.96
+Prince William - Manassas Regional Adult Detention Center,0,2015,0,1,Mixed,7.16
+Rappahannock Regional Jail,0,2015,0,1,Mixed,4.45
+New River Valley Regional Jail,0,2016,0,1,No,3.26
+Fairfax County Adult Detention Center,0,2016,0,1,Mixed,2.76
+Patrick County Jail,0,2016,0,1,Yes,6.48
+Prince William - Manassas Regional Adult Detention Center,0,2016,0,1,Mixed,8.04
+Rappahannock Regional Jail,0,2016,0,1,Mixed,4.93
+New River Valley Regional Jail,0,2017,0,1,No,5.33
+Fairfax County Adult Detention Center,0,2017,0,1,Mixed,5
+Patrick County Jail,0,2017,0,1,Yes,7.05
+Prince William - Manassas Regional Adult Detention Center,0,2017,0,1,Mixed,6.48
+Rappahannock Regional Jail,0,2017,0,1,Mixed,5.11
+New River Valley Regional Jail,0,2018,0,1,No,4.6
+Fairfax County Adult Detention Center,0,2018,0,1,Mixed,7.59
+Patrick County Jail,0,2018,0,1,Yes,6.9
+Prince William - Manassas Regional Adult Detention Center,0,2018,0,1,Mixed,5.86
+Rappahannock Regional Jail,0,2018,0,1,No,4.82
