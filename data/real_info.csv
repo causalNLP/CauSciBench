@@ -166,7 +166,7 @@ woman: 1 if the candidate is a woman, 0 otherwise
 invited: 1 if the candidate received an interview or a job or a follow-up response, 0 otherwise
 city1, city2, cite3, city4, city5, city6, city7: Dummy variables for the seven cities
 immigrant: 1 if the candidate is an immigrant (not born in Sweden), 0 otherwise
-time: Proportion of the applicant's life spent living in Sweden (scaled between 0 and 1)",Does being an immigrant make it less likely to get an interview request?,-0.087,0.03,1,ols,immigrant,invited,"citizen, woman, religious, experience, skilledjob, time",,,,,1,,,vernby_2019.csv,Table 2 (2),2019,economics,CC BY 4.0,https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HVRL0S,https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HVRL0S,,,,"@article{vernby_countering,
+time: Proportion of the applicant's life spent living in Sweden (scaled between 0 and 1)",Does being an immigrant make it less likely to get an interview request?,-0.087,0.03,1,ols,immigrant,invited,"citizen, woman, religious, experience, skilledjob, time",,,,,1,,,vernby_2019.csv,Table 2 (2),2019,economics,CC0 1.0,https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HVRL0S,https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HVRL0S,,,,"@article{vernby_countering,
     doi = {10.1371/journal.pone.0218044},
     author = {Vernby, Kåre AND Dancygier, Rafaela},
     journal = {PLOS ONE},
@@ -195,7 +195,7 @@ woman: 1 if the candidate is a woman, 0 otherwise
 invited: 1 if the candidate received an interview or a job or a follow-up response, 0 otherwise
 city1, city2, cite3, city4, city5, city6, city7: Dummy variables for the seven cities
 immigrant: 1 if the candidate is an immigrant (not born in Sweden), 0 otherwise
-time: Proportion of the applicant's life spent living in Sweden (scaled between 0 and 1)""","How does being born in Somalia, compared to other countries, affect a candidate’s chances of getting a job interview?",-0.144,0.031,1,ols,somalia,invited,"citizen, woman, religious, experience, skilledjob, time, poland, iraq",,,,,1,,,vernby_2019.csv,Table 2 (4),2019,economics,CC BY 4.0,https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HVRL0S,https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HVRL0S,,,,"@article{vernby_countering,
+time: Proportion of the applicant's life spent living in Sweden (scaled between 0 and 1)""","How does being born in Somalia, compared to other countries, affect a candidate’s chances of getting a job interview?",-0.144,0.031,1,ols,somalia,invited,"citizen, woman, religious, experience, skilledjob, time, poland, iraq",,,,,1,,,vernby_2019.csv,Table 2 (4),2019,economics,CC0 1.0,https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HVRL0S,https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/HVRL0S,,,,"@article{vernby_countering,
     doi = {10.1371/journal.pone.0218044},
     author = {Vernby, Kåre AND Dancygier, Rafaela},
     journal = {PLOS ONE},
@@ -357,7 +357,7 @@ nonblacknonwhite: 1 if the legislator is neither Black nor White, 0 otherwise
 urbanpercent: Percentage of the district that is urban
 leg_senator: 1 if the legislator is a senator, 0 otherwise
 leg_democrat: 1 if the legislator is a Democrat, 0 otherwise
-south: 1 if the legislator represents a Southern state, 0 otherwise",How much differently do Black legislators respond to out of districts email?,0.128,0.052,1,ols,treat_out,responded,"leg_black, leg_democrat, south, leg_senator, blackpercent, black_medianhh, white_medianhh, statessquireindex, urbanpercent, nonblacknonwhite, totalpop",,,,,1,leg_black,,broockman_intrinsic.csv,Table 2 (3),2013,political science,,,,This question is asking for heterogeneous effect i.e. the coefficient of the interaction variable,,,"@article{Broockman2013_BlackPoliticians,
+south: 1 if the legislator represents a Southern state, 0 otherwise",How much differently do Black legislators respond to out of districts email?,0.128,0.052,1,ols,treat_out,responded,"leg_black, leg_democrat, south, leg_senator, blackpercent, black_medianhh, white_medianhh, statessquireindex, urbanpercent, nonblacknonwhite, totalpop",,,,,1,leg_black,,broockman_intrinsic.csv,Table 2 (3),2013,political science,MIT,,,This question is asking for heterogeneous effect i.e. the coefficient of the interaction variable,,,"@article{Broockman2013_BlackPoliticians,
   author       = {David E. Broockman},
   title        = {Black Politicians Are More Intrinsically Motivated to Advance Blacks’ Interests:
                    A Field Experiment Manipulating Political Incentives},
@@ -1715,7 +1715,7 @@ d_tradeotchce_pw_lag: Lagged change in consumption-expenditure–weighted China-
 d_tradeusce_pw: Change in U.S. consumption–weighted import exposure per worker.
 d_tradeotce_pw_lag: Lagged change in others’ consumption–weighted China exposure per worker.
 d_tradeushi_pw: Change in high‑income–weighted U.S. import exposure per worker.
-d_tradeothi_pw_lag: Lagged change in high‑income–weighted China-to-others exposure per worker.""",What is the effect of import exposure on U.S. manufacturing employment share of those born between 1990 and 2007?,-0.013,0.056,1,iv,d_tradeusch_pw ,d_sh_empl_mfg ,t2 ,,,d_tradeotch_pw_lag ,,0,,,workfile_china.csv,,2013,economics,CC by 4.0,https://www.openicpsr.org/openicpsr/project/112670/version/V1/view,,,,,,,
+d_tradeothi_pw_lag: Lagged change in high‑income–weighted China-to-others exposure per worker.""",What is the effect of import exposure on U.S. manufacturing employment share of those born between 1990 and 2007?,-0.013,0.056,1,iv,d_tradeusch_pw ,d_sh_empl_mfg ,t2 ,,,d_tradeotch_pw_lag ,,0,,,workfile_china.csv,,2013,economics,CC BY 4.0,https://www.openicpsr.org/openicpsr/project/112670/version/V1/view,,,,,,,
 Using Maimonides’ Rule to Estimate the Effect of Class Size on Scholastic Achievement,"The data set contains data on 5th graders enrolled in Israeli public elementary schools. The schools had imposed an upper limit on the class size of 40. In case the class size exceeds 40 students, another class is set up. To ensure balance across multiple classes of the same grade, students are split roughly evenly. In addition to including information about the school and the class size, the dataset also includes data on student performances in verbal (Hebrew reading) and mathematics tests. 
 
 
@@ -3519,7 +3519,7 @@ married: married (1 if married, 0 otherwise)
 nodegree: nodegree (1 if no degree, 0 otherwise)
 re75: RE75 (earnings in 1975)
 re78: RE78 (earnings in 1978)
-income_change: income change""",What is the effect of the training program on income change?,854.2919,560.6663,0,ols,treat,income_change = re78 - re75,"age, age^2",,,,,,,,reevaluating_training_program.csv,"Table 5, first row, column 7 (for differences, age-adjusted)",1986,economics,CC by ND 2.0,https://users.nber.org/~rdehejia/data/.nswdata2.html,,,,,,,
+income_change: income change""",What is the effect of the training program on income change?,854.2919,560.6663,0,ols,treat,income_change = re78 - re75,"age, age^2",,,,,,,,reevaluating_training_program.csv,"Table 5, first row, column 7 (for differences, age-adjusted)",1986,economics,CC BY-NC 2.0,https://users.nber.org/~rdehejia/data/.nswdata2.html,,,,,,,
 Do female politicians empower women to vote or run for office? A regression discontinuity approach,"The dataset aims to study the influence of electing women officials on women's participation in subsequent elections. It uses data from US districts with close election races between men and women candidates. In the contests, candidates with more than 50 % of the vote win. 
 
 Variable description:
@@ -3549,7 +3549,7 @@ female_percentageofelectorate_th: Fraction of females in the voter electorate fo
 female_percentageofelectorate_ne: Fraction of females in the voter electorate for the next election 
 overall_voterturnout_thiscycle: Overall voter turnout in the reference election cycle 
 overall_voterturnout_nextcycle: Overall voter turnout in the next election cycle 
-",Does electing women in districts with close races empower other women to contest next year's election?,0.431,0.073,1,rdd,womanwon,femaleonballotnextyear,,femalecand_margin_of_victory,,,,0,,,female_politicians_empower.csv,Tabel 1 (Woman on Ballot),2014,political science,CC0 ,https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/JTSYV3,the data has many variables; we have included the definitions for the key ones only,,,,,,
+",Does electing women in districts with close races empower other women to contest next year's election?,0.431,0.073,1,rdd,womanwon,femaleonballotnextyear,,femalecand_margin_of_victory,,,,0,,,female_politicians_empower.csv,Tabel 1 (Woman on Ballot),2014,political science,CC0 1.0,https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/JTSYV3,the data has many variables; we have included the definitions for the key ones only,,,,,,
 Partisan Imbalance in Regression Discontinuity Studies Based on Electoral Thresholds,"The dataset contains the results of state-level elections: House, Senate, and Governor. It includes data on the share of the Democrats in the election and the outcomes. An election is won by the party that secures voter share greater than 0.5. 
 
 Variable description:
