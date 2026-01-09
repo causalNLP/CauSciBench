@@ -18,8 +18,6 @@ Path("logs/records").mkdir(parents=True, exist_ok=True)
 logging.config.fileConfig('logs/log_config.ini')
 logger = logging.getLogger("description_logger")
 
-## change this accordingly
-MODEL = "gpt-4"
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -33,6 +31,8 @@ def parse_args():
                         help="Method corresponding to the dataset")
     parser.add_argument('-do', '--domain', type=str, default="social science",
                         help="Domain of the dataset")
+    parser.add_argument('-mo''--model', type=str, default="gpt-4o",
+                        help="OpenAI model to use for generating context")
     return parser.parse_args()
 
 def get_dataset_files(path):
@@ -64,6 +64,7 @@ if __name__ == "__main__":
     output_folder = args.output_folder
     method = args.method
     domain = args.domain
+    llm = args.model
 
     with open(metadata_path, 'r') as f:
         all_metadata = json.load(f)
@@ -88,12 +89,12 @@ if __name__ == "__main__":
         summary = generate_data_summary(df, metadata.get("continuous"), metadata.get("binary"),
                                         metadata.get("type"), cutoff=cutoff)
         prompt = create_prompt(summary, metadata.get("type"), domain, history)
-        response = client.chat.completions.create(model=MODEL,
+        response = client.chat.completions.create(model=llm,
                                                   messages=[{"role": "user", "content": prompt}],
                                                   temperature=0.7).choices[0].message.content
         response_json = json.loads(response)
         filtered_prompt = filter_question(response_json["question"])
-        clean_response = client.chat.completions.create(model=MODEL,
+        clean_response = client.chat.completions.create(model=llm,
                                                         messages=[{"role": "user", "content": filtered_prompt}],
                                                         temperature=0).choices[0].message.content
         response_json["question"] = clean_response
