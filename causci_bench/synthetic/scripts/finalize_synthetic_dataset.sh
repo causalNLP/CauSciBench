@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# This scripts puts together the results of generate_context.py and generate_synthetic.py. It renames the columns of the synthetic data files, and saves the resulting csv file. Additionally, it creates a summary csv file including the key information needed to run and evaluate the tests on the synthetic data.
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo $SCRIPT_DIR
+source "${SCRIPT_DIR}/settings.sh"
+
+for METHOD in rct frontdoor multi_rct did_canonical did_twfe iv iv_encouragement rdd observational; do
+    METADATA_FOLDER="${BASE_FOLDER}/${METHOD}/metadata/${METHOD}.json"
+    INPUT_DATA_FOLDER="${BASE_FOLDER}/${METHOD}/data"
+    OUTPUT_PATH="${BASE_FOLDER}/data_info"
+    DESCRIPTION_PATH="${BASE_FOLDER}/${METHOD}/description/${METHOD}.json"
+    OUTPUT_DATA_FOLDER="${BASE_FOLDER}/synthetic_data"
+
+    python causci_bench/synthetic/processing/finalize_data.py -md "$METADATA_FOLDER" \
+        -id "$INPUT_DATA_FOLDER" -m  "$METHOD" -o  "$OUTPUT_PATH" \
+        -de "$DESCRIPTION_PATH" -od "$OUTPUT_DATA_FOLDER"
+done
+
+COMBINED="${BASE_FOLDER}/data_info/combined_data_info.csv"
+rm -f "$COMBINED"
+awk 'FNR==1 && NR!=1 { next } 1' "${BASE_FOLDER}/data_info/"*.csv > "$COMBINED"
