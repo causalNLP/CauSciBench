@@ -156,36 +156,6 @@ bash causci_bench/synthetic/scripts/create_context/create_context_rct.sh
 bash causci_bench/synthetic/scripts/finalize_synthetic_dataset.sh
 ```
 
-## Alternative: Using Python Directly
-
-You can also run the Python modules directly:
-
-```bash
-# Generate data
-python -m causci_bench.synthetic.generation.generate_synthetic \
-    -m observational \
-    -d synthetic_data/observational/data \
-    -md synthetic_data/observational/metadata \
-    -s 10
-
-# Generate context
-python -m causci_bench.synthetic.context.generate_context \
-    -mp synthetic_data/observational/metadata/observational.json \
-    -d synthetic_data/observational/data \
-    -o synthetic_data/observational/description \
-    -m observational \
-    -do education
-
-# Finalize data
-python -m causci_bench.synthetic.processing.finalize_data \
-    -id synthetic_data/observational/data \
-    -od synthetic_data/processed_data \
-    -o synthetic_data/data_info \
-    -md synthetic_data/observational/metadata/observational.json \
-    -de synthetic_data/observational/description/observational.json \
-    -m observational
-```
-
 ## Sample Results
 
 Example outputs can be found in the `output/synthetic/` directory after running the scripts.
