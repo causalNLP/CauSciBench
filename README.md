@@ -107,16 +107,17 @@ python causci_bench/baselines/run_baselines.py \
   --react \
   --data-type qrdata
 ```
+
 **Key Parameters:**
 - `--queries`: Path to JSON file with causal questions
 - `--output`: File path where results are saved
-- `--api`: LLM provider (e.g., openai, azure, vertex, together)
-- `--model`: LLM model (e.g., gpt-4o, claude-3-sonnet)
+- `--api`: LLM provider (e.g., openai, together)
+- `--model`: LLM model (e.g., gpt-4o)
 - `--persistent`: Use stateful Python environment
 - `--potm/--react/--chain`: Different prompting strategies; default is direct prompting
 - `--data-type`: Dataset category (real, synthetic, qrdata)
 
-#### How causci_bench/baselines/run_baselines.py works
+#### How causci_bench/baselines/run_baselines.py Works
 
 1. **Load queries**: Reads JSON files containing causal questions and attributes pertaining to causal inference
 2. **Docker setup**: Starts Python containers for code execution
@@ -127,3 +128,7 @@ python causci_bench/baselines/run_baselines.py \
    - Iterates if an error arises
    - Extracts the key results
 4. **Save results**: Outputs a JSON file with chat history, code, and analysis
+
+## Other Notes
+
+Details on our approach for generating synthetic data are provided in the README file in `causci_bench/synthetic`.
