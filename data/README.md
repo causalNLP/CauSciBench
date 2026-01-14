@@ -10,10 +10,11 @@ The folder contains the datasets used in our benchmark. It includes both the csv
 │   ├── qrdata.json
 │   ├── real_data.json
 │   └── synthetic_data.json
-└── metadata_csv/           # the annotation + metadata in csv file
-    ├── qrdata.csv
-    ├── real_data.csv
-    └── synthetic_data.csv
+├── metadata_csv/           # the annotation + metadata in csv file
+│   ├── qrdata.csv
+│   ├── real_data.csv
+│   └── synthetic_data.csv
+└── source_info.pdf         # details about the sources for real-world datasets
 ```
 
 The JSON files are derived from the master csv file. They include only the set of information we need when running evaluations on the data. For more comprehensive information, see the csv files (in metadata_csv).
@@ -44,3 +45,6 @@ The metadata also consists of the following information:
 4. Publication year
 5. Domain
 
+## License
+
+The usage license varies across the files. Please see the README in the respective folders (synthetic_data, qrdata, real_data) for details about the licenses. Concise information on the source and license for real-world datasets is provided in `source_info.pdf`.

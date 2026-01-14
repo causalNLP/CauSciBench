@@ -79,6 +79,51 @@ We use data from published papers, and the usage terms vary from dataset to data
 
 ## Next Steps
 
-- To run the baseline models, see instructions in `causci_bench/baselines`
-- To generate synthetic data, see `causci_bench/synthetic`
+### 1. Building Docker Image
 
+We use Docker containers to run our baseline models. To set this up:
+
+```bash
+docker build -t python-baseline-http -f baselines/Dockerfile.http baselines
+```
+
+### 2. Replicating Results / Running Baselines
+
+You can run experiments using either the provided script or directly with Python:
+
+**Using the script:**
+```bash
+bash scripts/run_baseline.sh
+```
+
+**Using Python directly:**
+```bash
+python causci_bench/baselines/run_baselines.py \
+  --queries data/json/qrdata.json \
+  --output output/qrdata/qrdata_react_gpt-4o.json \
+  --api openai \
+  --model gpt-4o \
+  --persistent \
+  --react \
+  --data-type qrdata
+```
+**Key Parameters:**
+- `--queries`: Path to JSON file with causal questions
+- `--output`: File path where results are saved
+- `--api`: LLM provider (e.g., openai, azure, vertex, together)
+- `--model`: LLM model (e.g., gpt-4o, claude-3-sonnet)
+- `--persistent`: Use stateful Python environment
+- `--potm/--react/--chain`: Different prompting strategies; default is direct prompting
+- `--data-type`: Dataset category (real, synthetic, qrdata)
+
+#### How causci_bench/baselines/run_baselines.py works
+
+1. **Load queries**: Reads JSON files containing causal questions and attributes pertaining to causal inference
+2. **Docker setup**: Starts Python containers for code execution
+3. **Execution loop**: For each query:
+   - Sends the question along with the context to the selected LLM
+   - LLM generates Python code for causal estimation
+   - Executes code in Docker container
+   - Iterates if an error arises
+   - Extracts the key results
+4. **Save results**: Outputs a JSON file with chat history, code, and analysis
