@@ -1,12 +1,8 @@
-import pandas as pd
-import re
 import json
 
 from .chatbot import Chatbot
-from .query_formats import QueryFormat, CausalQueryFormat
+from .query_formats import DirectFormat, ReActFormat, ChainReactFormat
 from .coderunner import CodeRunner
-
-from typing import Optional
 
 
 def print_color(text, color):
@@ -33,12 +29,13 @@ def find_code(reply, language="python"):
 class Baseline:
     """A conversational chatbot that has access to a dataset"""
 
-    def __init__(self, chatbot: Chatbot, safe_exec=True, persistent=False, 
-                 session_timeout=3600, max_retries=3, worker_id=None) -> None:
+    def __init__(self, chatbot: Chatbot, safe_exec=True, persistent=False,
+                 session_timeout=3600, max_retries=3, max_steps=15, worker_id=None) -> None:
         self.chatbot = chatbot
-        self.code_runner = CodeRunner(safe_exec=safe_exec, persistent=persistent, 
+        self.code_runner = CodeRunner(safe_exec=safe_exec, persistent=persistent,
                                       session_timeout=session_timeout, worker_id=worker_id)
         self.max_retries = max_retries
+        self.max_steps = max_steps
         self.persistent = persistent
 
     def get_final_result(self):
@@ -49,6 +46,7 @@ class Baseline:
 Please provide a final summary of the analysis in a single, well-formed JSON object. The JSON object should have the following keys. If a field is not applicable, use `null`.
 
 - `method`: The name of the primary causal inference method used (e.g., "Propensity Score Weighting", "Difference-in-Differences", "Frontdoor Estimation").
+- `justification`: Justification for the choice of the method. 
 - `causal_effect`: The estimated causal effect. Provide this as a numerical value.
 - `standard_deviation`: The standard deviation of the causal effect estimate, if available.
 - `treatment_variable`: The name of the treatment variable.
@@ -60,8 +58,8 @@ Please provide a final summary of the analysis in a single, well-formed JSON obj
 - `running_variable`: The name of the running variable for Regression Discontinuity, if applicable.
 - `temporal_variable`: The name of the time variable for Difference-in-Differences, if applicable.
 - `statistical_test_results`: A summary of key statistical test results, like p-values or confidence intervals.
-- `explanation_for_model_choice`: A brief explanation for why the chosen causal method was appropriate for this analysis.
 - `regression_equation`: The exact regression equation if a regression model was used.
+- `interpretation`: Interpretation of the results with respect to the original causal query being asked.
 
 Output the JSON object only, without any additional text or explanation. Ensure the JSON is properly formatted and valid.
 """
@@ -166,8 +164,8 @@ Output the JSON object only, without any additional text or explanation. Ensure 
         
         return self.code_runner.list_files(directory)
 
-    def answer(self, query, dataset_path, dataset_description="", qf=CausalQueryFormat, post_steps=False):
-        """Answer a causal query using the dataset path (a df)"""
+    def answer(self, query, dataset_path, dataset_description="", qf=DirectFormat, post_steps=False):
+        """Answer a causal query using the dataset path."""
         
         self.chatbot.delete_history()
         
@@ -190,8 +188,12 @@ Output the JSON object only, without any additional text or explanation. Ensure 
         codes = []
         code_outputs = []
         
+        # ReAct-style formats need many steps; others just need a few error-retry attempts
+        is_react = isinstance(query_format, (ReActFormat, ChainReactFormat))
+        iteration_limit = self.max_steps if is_react else self.max_retries
+
         # Run code while the model outputs code
-        for retry_count in range(self.max_retries):
+        for retry_count in range(iteration_limit):
             code = find_code(reply)
             if code is None:
                 break
