@@ -76,8 +76,7 @@ You need to print the following:
     1. Effect: The causal effect (the value only)
     2. Standard Deviation: The standard deviation (the value only)
     3. Method: The causal inference method that was used
-    4. Justification: Justification for the method choice i.e. how does the data and its description justify the identification assumptions.
-       You can do this by providing an explanation or interpreting the result statistics / diagnostic test.
+    4. Justification: Justification for the method choice i.e. how the data and its description justify the identification assumptions. 
     5. Treatment: The treatment variable (the variable name only)
     6. Outcome: The outcome variable (the variable name only)
     7. Mediator: The mediator variable (the variable name only if frontdoor adjustment was used)
@@ -144,7 +143,7 @@ The causal question I would like you to answer is:
 ```
 
 Let us approach this problem step by step.
-Step 1. First, go through the dataset description and the query. Then, identify the treatment variable and the outcome variable.
+Step 1. First, go through the dataset description and the query. Then, identify the treatment variable and the outcome variable from the dataset.
         Also, reason why these variables would be appropriate.
 Step 2. Next, reason about the potential confounders affecting both treatment and outcome i.e. given the setting, what variables could
         affect both treatment and outcome, and why?
@@ -155,10 +154,11 @@ Step 3. What would be the appropriate estimand to consider for this problem?
            Difference-in-means (equivalent to linear regression with outcome and treatment), Generalized linear models / GLMs, Frontdoor adjustment.
         Carefully reason about the identification assumptions of each of the above methods, how they relate to the data and its description, and whether they
         are satisfied or not.
-        Based on your reasoning, select the most appropriate method to estimate the effect. Justify why the selected method is appropriate.
+        Based on your reasoning, select the most appropriate method to estimate the effect. Justify why the selected method is appropriate, and 
+        can plausibly identify the causal effect. You can either argue qualitatively and/or perform statistical tests to support your choice.
 
 Step 4. Next, we will write the Python code to implement the method you have selected. In doing so, carefully think about the key pre-processing steps.
-        Make sure to print the key steps and results.
+        Make sure to print the key steps and the causal effect estimate with its standard deviation. 
 **Important: Only use these approved packages:** pandas, numpy, scipy, scikit-learn (sklearn), statsmodels, dowhy,
              rdd (for regression discontinuity design), linearmodels, econml
 
@@ -235,14 +235,15 @@ Additional constraints:
 
 For reference, here is a typical causal inference pipeline. 
 1.  Explore the dataset to understand its structure, data types, missing values, and other characteristics that might be helpful.
-2.  Identify the treatment and outcome variables.
+2.  Identify the treatment and outcome variables from the dataset
 3.  Identify potential confounders affecting both treatment and outcome.
 4.  Select the most appropriate causal inference method from the list below: 
        IPW (Inverse Probability Weighting), Linear regression with control variables, Instrumental Variable, Matching with an appropriate estimand, 
        Difference-in-Differences, Regression Discontinuity Design, Difference-in-means (equivalent to linear regression with outcome and treatment), 
        Generalized linear models / GLMs, Frontdoor adjustment
-5.  Justify why the method is appropriate for the given scenario i.e. how the data and its description justify the identification assumptions. 
-    You can implement statistical and/or diagnostic tests, when applicable or argue qualitatively. 
+5.  Justify why the method is appropriate for the given scenario i.e. how the data and its description justify the identification assumptions, 
+    and the can plausibly identify the causal effect. 
+    You can either argue qualitatively and/or perform statistical tests to support your choice.
 6.  Implement the method in Python using the dataframe df.
 7.  Compute the causal effect and standard error.
 
@@ -259,7 +260,6 @@ Use the following format for reasoning and action:
         2.  Standard Deviation: The standard deviation (the value only)
         3.  Method: The causal inference method that was used
         4.  Justification: Justification for the method choice i.e. how the data and its description justify the identification assumptions. 
-        You can do this by providing an explanation or interpreting statistical results or diagnostic tests.
         5.  Treatment: The treatment variable (the variable name only)
         6.  Outcome: The outcome variable (the variable name only)
         7.  Mediator: The mediator variable (the variable name only if frontdoor adjustment was used)
@@ -333,7 +333,7 @@ Use the following structure:
 
 # Step 1: Load dataset 
 # Step 2: Exploratory analysis of the data 
-# Step 3: Identify treatment and outcome variables. 
+# Step 3: Identify treatment and outcome variables from the dataset
 # Step 4: Identify the confounders. 
 # Step 5: Perform diagnostic tests to assess the assumptions associated with the candidate methods given above. 
 # Step 6: Select the most appropriate method based on the diagnostic tests and qualitatively reasoning about the assumptions in the context of the data and its description.
@@ -341,6 +341,9 @@ Use the following structure:
 # Step 8: Display the final result. 
 
 Make sure to print results for each of the above steps. 
+
+The code you write will be executed, and you will next analyze the output. To ease the process, please output one block of code, and make sure the code prints the key results and values.
+Everything between your first code block: '```python' and '```' will be executed. If there is an error, you will have several attempts to correct the code.
 
 The final outputs must include:
     1.  Effect: The causal effect (the value only)
@@ -406,8 +409,8 @@ Reasoning Phase:
     IPW (Inverse Probability Weighting), Linear regression with control variables, Instrumental Variable, Matching with an appropriate estimand,
     Difference-in-Differences, Regression Discontinuity Design, Difference-in-means (equivalent to linear regression with outcome and treatment), 
     Generalized linear models / GLMs, Frontdoor adjustment.
-Carefully think about the assumptions underlying each of the above methods. For each method, reason whether its identification assumptions
-are plausible given the dataset description and the causal query. 
+    Carefully think about the assumptions underlying each of the above methods. For each method, reason whether its identification assumptions
+    are plausible given the dataset description and the causal query i.e. whether the method can plausibly identify the causal effect or not.
 4.  After evaluating all candidate methods and their assumptions, select the most appropriate method (only 1) for estimating the causal effect. 
     Clearly state the assumptions of the selection method and justify why they are plausible given the dataset description and the causal query. 
 
