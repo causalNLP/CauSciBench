@@ -3,7 +3,7 @@
 CauSciBench: A Comprehensive Benchmark for End-to-End Causal Inference in Scientific Research
 </h1>
 
-**Note**: This is a work in progress. We will update the repository frequently in the subsequent days.
+**Note**: We are cleaning the repo and making it more user friendly. We are aiming to release the cleaned and complete version around the fourth week of June. 
 
 ## Overview
 
