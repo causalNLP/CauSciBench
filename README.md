@@ -41,13 +41,6 @@ The benchmark comprises queries from three sources:
 3. **QRData-CI**
    - Examples focused on causal inference from [QRData](https://github.com/xxxiaol/QRData) (Liu et al., 2024)
 
-## Organization of the Folder
-
-1. `causci_bench`: associated Python library
-2. `data`: datasets and metadata used in the benchmark
-3. `replications`: code to reproduce the causal analyses in the benchmark
-4. `reference`: pointers to the original results (tables, figures, or sections) in the source papers
-
 ## License
 
 We use data from published papers, and the usage terms vary from dataset to dataset. Details about the licenses are provided in `data/README.md`.
