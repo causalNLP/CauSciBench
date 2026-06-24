@@ -13,7 +13,7 @@ if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
 import baselines as base
-from baselines import DirectFormat, CausalCoTFormat, ProgramOfThoughtsFormat, ReActFormat, ChainReactFormat
+from baselines import DirectFormat, CausalCoTFormat, ProgramOfThoughtsFormat, ReActFormat
 
 
 def main(args):
@@ -30,11 +30,11 @@ def main(args):
 
     # Determine the base path for datasets
     if args.data_type == 'qrdata':
-        base_path = str(data_root / 'qrdata')
+        base_path = str(data_root / 'csv_files' / 'qrdata')
     elif args.data_type == 'real':
-        base_path = str(data_root / 'real_data')
+        base_path = str(data_root / 'csv_files' / 'realdata')
     elif args.data_type == 'synthetic':
-        base_path = str(data_root / 'synthetic_data')
+        base_path = str(data_root / 'csv_files' / 'synthetic_data')
     else:
         raise ValueError(f"Invalid data type: {args.data_type}")
 
@@ -42,9 +42,8 @@ def main(args):
     if queries_path.endswith('.csv'):
         df = pd.read_csv(queries_path)
         df = df.rename(columns={
-            'natural_language_query': 'query',
             'data_description': 'dataset_description',
-            'data_files': 'dataset_path'
+            'dataset_name': 'dataset_path'
         })
         queries = df.to_dict('records')
     elif queries_path.endswith('.json'):
@@ -118,11 +117,11 @@ def main(args):
 
     output = []
     for q in tqdm.tqdm(queries, desc="Processing queries"):
-        query = q["query"]
-        dataset_path = q["dataset_path"]
-        dataset_description = q["dataset_description"]
-
         try:
+            query = q["query"]
+            dataset_path = q["dataset_path"]
+            dataset_description = q["dataset_description"]
+
             # If in persistent mode, upload the dataset file to the container
             if args.persistent and os.path.exists(dataset_path):
                 print(f"Uploading dataset file {dataset_path} to container...")
@@ -135,10 +134,9 @@ def main(args):
             result = model.answer(query, dataset_path, dataset_description, qf=qf,
                                   post_steps=False)
             output.append({**q, "result": result})
-            #print(result)
 
         except Exception as e:
-            print(f"Error on query '{query[:80]}': {e}")
+            print(f"Error on query '{str(q.get('query', ''))[:80]}': {e}")
             import traceback
             traceback.print_exc()
             output.append({**q, "result": None, "error": str(e)})
@@ -158,14 +156,12 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--queries", type=str, default="data/metadata_json/qrdata.json",
+    parser.add_argument("--queries", type=str, default="data/metadata_json/qr_input.json",
                         help="Path to the queries file (JSON or CSV)")
     parser.add_argument("--output", type=str, default="runs/output.json",
                         help="Path to the output json file")
     parser.add_argument("--model", type=str, default="google/gemini-1.5-flash-001",
                         help="Name of the model to use")
-    parser.add_argument("--query-format", type=str, default="CausalQueryFormat",
-                        help="Name of the QueryFormat class to use")
     parser.add_argument("--data-type", type=str, default="qrdata",
                         choices=['qrdata', 'real', 'synthetic'],
                         help="Type of data to process (qrdata, real, or synthetic)")
@@ -173,18 +169,14 @@ if __name__ == "__main__":
                         help="Type of API to use. Options: vertex, azure, test, local, openai, together.")
     parser.add_argument("--rpc-address", type=str, default=None,
                         help="Address of the RPC server to connect to (will override the --api flag)")
-    parser.add_argument("--veridical", action=argparse.BooleanOptionalAction,
-                        help="Use the veridical prompting method")
     parser.add_argument("--pot", action=argparse.BooleanOptionalAction,
-                        help="Use the program of thoughts approach for causal analysis")
+                        help="Use the Program of Thoughts (PoT) approach for causal analysis")
     parser.add_argument("--react", action=argparse.BooleanOptionalAction,
                         help="Use the ReAct approach for causal analysis")
     parser.add_argument("--chain", action=argparse.BooleanOptionalAction,
-                        help="Use the Causal Chain of Thought (CausalCoT) for causal analysis")
+                        help="Use the Causal Chain of Thought (CoT) approach for causal analysis")
     parser.add_argument("--chainreact", action=argparse.BooleanOptionalAction,
                         help="Use the Chain of Thought with ReAct (ChainReact) for causal analysis")
-    parser.add_argument("--method-explanation", action=argparse.BooleanOptionalAction,
-                        help="(For the baseline) Use method explanation")
     parser.add_argument("--persistent", action=argparse.BooleanOptionalAction,
                         help="Use persistent Python environment for code execution")
     parser.add_argument("--session-timeout", type=int, default=3600,
