@@ -30,7 +30,7 @@ class QueryFormat:
         pass
 
 
-class CausalQueryFormat(QueryFormat):
+class DirectFormat(QueryFormat):
     def get_query_format(self, include_method_explanation=False):
         # Create a causal query based on the data and textual query
         df = read_csv(self.dataset_path)
@@ -148,7 +148,7 @@ Use a single code block. If the code succeeds, do not add any new code, just pro
         return query
 
 
-class CausalCoTFormat(CausalQueryFormat):
+class CausalCoTFormat(DirectFormat):
     def get_query_format(self, include_method_explanation=False):
 
         df = read_csv(self.dataset_path)

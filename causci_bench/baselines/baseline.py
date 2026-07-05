@@ -3,7 +3,7 @@ import re
 import json
 
 from .chatbot import Chatbot
-from .query_formats import QueryFormat, CausalQueryFormat
+from .query_formats import QueryFormat, DirectFormat
 from .coderunner import CodeRunner
 
 from typing import Optional
@@ -166,7 +166,7 @@ Output the JSON object only, without any additional text or explanation. Ensure 
         
         return self.code_runner.list_files(directory)
 
-    def answer(self, query, dataset_path, dataset_description="", qf=CausalQueryFormat, post_steps=False):
+    def answer(self, query, dataset_path, dataset_description="", qf=DirectFormat, post_steps=False):
         """Answer a causal query using the dataset path (a df)"""
         
         self.chatbot.delete_history()

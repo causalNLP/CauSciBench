@@ -80,8 +80,7 @@ def main(args):
             raise ValueError(f"Invalid API: {args.api}")
 
     # Initialize the baseline
-    model = base.Baseline(chatbot, persistent=args.persistent, session_timeout=args.session_timeout,
-                          max_steps=args.max_steps)
+    model = base.Baseline(chatbot, persistent=args.persistent, session_timeout=args.session_timeout)
 
     # Start persistent session if enabled
     if args.persistent:
@@ -103,12 +102,7 @@ def main(args):
         qf = ReActFormat
     elif args.chain:
         qf = CausalCoTFormat
-    elif args.chainreact:
-        qf = ChainReactFormat
 
-    if qf in (ReActFormat, ChainReactFormat) and not args.persistent:
-        print(f"Warning: {qf.__name__} requires persistent mode. "
-              "Code blocks may fail due to missing state from previous steps.")
 
     # Create output directory if it doesn't exist
     output_dir = os.path.dirname(args.output)
@@ -175,14 +169,12 @@ if __name__ == "__main__":
                         help="Use the ReAct approach for causal analysis")
     parser.add_argument("--chain", action=argparse.BooleanOptionalAction,
                         help="Use the Causal Chain of Thought (CoT) approach for causal analysis")
-    parser.add_argument("--chainreact", action=argparse.BooleanOptionalAction,
-                        help="Use the Chain of Thought with ReAct (ChainReact) for causal analysis")
     parser.add_argument("--persistent", action=argparse.BooleanOptionalAction,
                         help="Use persistent Python environment for code execution")
     parser.add_argument("--session-timeout", type=int, default=3600,
                         help="Timeout for persistent sessions in seconds (default: 3600)")
     parser.add_argument("--max-steps", type=int, default=15,
-                        help="Maximum number of ReAct steps for ReAct/ChainReact formats (default: 15)")
+                        help="Maximum number of ReAct steps for ReAct format (default: 15)")
 
     args = parser.parse_args()
     main(args)
