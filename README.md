@@ -3,7 +3,18 @@
 CauSciBench: A Comprehensive Benchmark for End-to-End Causal Inference in Scientific Research
 </h1>
 
-**Note**: We are cleaning the repo and making it more user friendly. We are aiming to release the cleaned and complete version around the fourth week of June. 
+
+
+## Key Folders
+
+| Folder | Description |
+|---|---|
+| `causci_bench` | Core Python library for running baselines and evaluating model outputs |
+| `data` | CSV Datasets and metadata info (in CSV and JSON format) describing the key attributes  |
+| `evaluation` | Scripts for computing evaluation metrics across all models and prompting strategies |
+| `reference` | Pointers to results of interest in the source papers |
+| `replications` | Code to reproduce the causal analyses|
+| `scripts` | Shell scripts for running baselines and evaluation |
 
 ## Overview
 
@@ -23,23 +34,19 @@ The benchmark comprises queries from three sources:
 
 1. **Real-world Studies**
    - Published papers on empirical causal inference from diverse disciplines including economics, political science, healthcare, and criminology
-   - Information on selected studies can be found in `data/source_info.pdf`
 
 2. **Synthetic Scenarios**
    - Synthetically generated data with known causal effects
    - Hypothetical contexts and variables generated to resemble real-world causal analysis
 
-3. **Textbook Examples**
+3. **QRData-CI**
    - Examples focused on causal inference from [QRData](https://github.com/xxxiaol/QRData) (Liu et al., 2024)
-
-## Organization of the Folder
-
-1. `causci_bench`: associated Python library
-2. `data`: folder containing our data
 
 ## License
 
-We use data from published papers, and the usage terms vary from dataset to dataset. Details about the licenses are provided in the `README.md` file in each dataset folder. They can be found in the folders: `data/real_data`, `data/synthetic_data`, and `data/qrdata`.
+We use data from published papers, and the usage terms vary from dataset to dataset. Details about the licenses are provided in `data/README.md`.
+
+Our code is provided under the MIT License.
 
 **Important**: Users must comply with the license terms of each individual dataset they use. Always review the license terms at the original data sources and ensure compliance.
 
@@ -84,7 +91,7 @@ We use data from published papers, and the usage terms vary from dataset to data
 We use Docker containers to run our baseline models. To set this up:
 
 ```bash
-docker build -t python-baseline-http -f baselines/Dockerfile.http baselines
+docker build -t python-baseline-http -f causci_bench/baselines/Dockerfile.http causci_bench/baselines
 ```
 
 ### 2. Replicating Results / Running Baselines
@@ -99,7 +106,7 @@ bash scripts/run_baseline.sh
 **Using Python directly:**
 ```bash
 python causci_bench/baselines/run_baselines.py \
-  --queries data/json/qrdata.json \
+  --queries data/metadata_json/qr_input.json \
   --output output/qrdata/qrdata_react_gpt-4o.json \
   --api openai \
   --model gpt-4o \
@@ -114,7 +121,7 @@ python causci_bench/baselines/run_baselines.py \
 - `--api`: LLM provider (e.g., openai, together)
 - `--model`: LLM model (e.g., gpt-4o)
 - `--persistent`: Use stateful Python environment
-- `--potm/--react/--chain`: Different prompting strategies; default is direct prompting
+- `--pot/--react/--chain`: Different prompting strategies; default is direct prompting
 - `--data-type`: Dataset category (real, synthetic, qrdata)
 
 #### How causci_bench/baselines/run_baselines.py Works
@@ -128,6 +135,37 @@ python causci_bench/baselines/run_baselines.py \
    - Iterates if an error arises
    - Extracts the key results
 4. **Save results**: Outputs a JSON file with chat history, code, and analysis
+
+### 3. Running Evaluation
+
+After collecting model outputs, compute evaluation metrics across all models and prompting strategies:
+
+**Using the script (all three datasets):**
+```bash
+bash scripts/run_evaluation.sh
+```
+
+**Using Python directly (single dataset):**
+```bash
+python evaluation/run_evaluation.py \
+  --source qrdata \
+  --output_folder output/qrdata \
+  --meta_path data/metadata_csv/qr_info.csv \
+  --output_dir evaluation/results
+```
+
+**Key Parameters:**
+- `--source`: Dataset category (`real`, `synthetic`, `qrdata`)
+- `--output_folder`: Folder containing the JSON output files from `run_baselines.py`
+- `--meta_path`: Path to the metadata CSV file for the dataset
+- `--output_dir`: Directory where the results CSV is saved (default: `evaluation/results`)
+
+Results are saved as `results_{source}.csv` with one row per (prompt, model) combination, reporting:
+- `method_accuracy`, `method_f1`: method selection accuracy and macro F1
+- `effect_accuracy`: causal effect accuracy (within 5% of the true value)
+- `treatment_accuracy`, `outcome_accuracy`: variable selection accuracy
+- `control_overlap`: Jaccard-style overlap of predicted vs. reference control variables
+- `completion_rate`, `mean_attempts`: how often the pipeline produces a valid result and average retries
 
 ## Other Notes
 
